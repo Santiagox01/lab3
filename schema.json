@@ -1,0 +1,9 @@
+{
+  "ventas": [
+    { "vendedor": "Ana García", "monto": 25000, "estado": "cerrado", "fecha": "2026-03-22", "cliente": "Viajes Éxito Corporativo", "servicio": "Bloque 50 Asientos Charter MDE-MIA" },
+    { "vendedor": "Luis Martínez", "monto": 18000, "estado": "negociación", "fecha": "2026-03-23", "cliente": "Bancolombia Convenciones", "servicio": "Vuelo Especial BOG-CTG Grupo Finanzas" },
+    { "vendedor": "James Passaquindici", "monto": 35000, "estado": "cerrado", "fecha": "2026-03-25", "cliente": "Ecopetrol Logística", "servicio": "Convenio Rutas Petroleras BOG-VVC" },
+    { "vendedor": "Sofía Torres", "monto": 12500, "estado": "prospecto", "fecha": "2026-03-26", "cliente": "Copa & Rutas Mayoristas", "servicio": "Cupos Temporada Alta San Andrés" },
+    { "vendedor": "Ana García", "monto": 42000, "estado": "cerrado", "fecha": "2026-03-28", "cliente": "Grupo Argos", "servicio": "Plan Corporativo Millas y Asientos Business" }
+  ]
+}

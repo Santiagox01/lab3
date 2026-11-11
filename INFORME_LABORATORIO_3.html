@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe Laboratorio 3 - Integración de N8N con Agentes de IA</title>
+    <style>
+    
+body {
+    font-family: 'Times New Roman', Times, Georgia, serif;
+    line-height: 1.6;
+    color: #000000;
+    max-width: 920px;
+    margin: 40px auto;
+    padding: 0 35px;
+    background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #000000;
+    font-weight: 700;
+    margin-top: 34px;
+    margin-bottom: 14px;
+}
+
+h1 {
+    font-size: 2.1em;
+    border-bottom: 3px solid #000000;
+    text-align: center;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 1.45em;
+    border-bottom: 1.5px solid #000000;
+    padding-bottom: 6px;
+    margin-top: 36px;
+}
+
+h3 {
+    font-size: 1.2em;
+    border-bottom: 1px solid #333333;
+    padding-bottom: 4px;
+}
+
+h4 {
+    font-size: 1.05em;
+}
+
+p, li {
+    font-size: 1.02em;
+    text-align: justify;
+    color: #000000;
+}
+
+strong {
+    color: #000000;
+    font-weight: 700;
+}
+
+a {
+    color: #000000;
+    text-decoration: underline;
+}
+
+hr {
+    border: none;
+    border-top: 1.5px solid #000000;
+    margin: 30px 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 22px 0;
+    font-size: 0.95em;
+}
+
+table, th, td {
+    border: 1px solid #000000;
+}
+
+th, td {
+    padding: 8px 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+    color: #000000;
+    font-weight: 700;
+}
+
+pre, code {
+    font-family: 'Courier New', Courier, monospace;
+    color: #000000;
+}
+
+pre {
+    background-color: #f9f9f9;
+    border: 1px solid #000000;
+    border-left: 5px solid #000000;
+    padding: 14px 18px;
+    overflow-x: auto;
+    font-size: 0.88em;
+    line-height: 1.4;
+    margin: 18px 0;
+}
+
+code {
+    background-color: #f2f2f2;
+    padding: 2px 5px;
+    border: 1px solid #cccccc;
+    font-size: 0.92em;
+}
+
+pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+img {
+    max-width: 95%;
+    height: auto;
+    display: block;
+    margin: 24px auto;
+    border: 1.5px solid #000000;
+    padding: 4px;
+    background: #ffffff;
+}
+
+blockquote {
+    border-left: 4px solid #000000;
+    margin: 18px 0;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+    color: #000000;
+}
+
+@media print {
+    body {
+        max-width: 100%;
+        margin: 18mm 15mm;
+        padding: 0;
+    }
+    img {
+        max-width: 92%;
+        page-break-inside: avoid;
+    }
+    table, pre {
+        page-break-inside: avoid;
+    }
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+}
+
+    </style>
+</head>
+<body>
+<h1>INFORME DE LABORATORIO N° 3</h1>
+<h1>INTEGRACIÓN DE N8N CON AGENTES DE IA Y DESARROLLO ASISTIDO POR IA (VIBECODING)</h1>
+<p><strong>Universidad de Antioquia</strong><br />
+<strong>Facultad de Ingeniería — Departamento de Ingeniería de Sistemas</strong><br />
+<strong>Curso:</strong> Fundamentos de Sistemas de Información (2026)<br />
+<strong>Profesor:</strong> Diego José Luis Botia V.<br />
+<strong>Estudiante:</strong> Santiago Jaramillo<br />
+<strong>Fecha:</strong> Noviembre de 2026<br />
+<strong>Repositorio GitHub:</strong> <a href="https://github.com/Santiagox01/lab3">https://github.com/Santiagox01/lab3</a></p>
+<hr />
+<h2>1. RESUMEN EJECUTIVO</h2>
+<p>El presente informe documenta el desarrollo integral del <strong>Laboratorio N° 3</strong>, enfocado en la aplicación del paradigma de <strong>Vibecoding</strong> (desarrollo de software asistido por Inteligencia Artificial generativa), el diseño e implementación de un <strong>Dashboard de CRM analítico B2B</strong> inspirado en referencias visuales profesionales de alta calidad (Dribbble / OnePoint Studio), y la integración de <strong>Agentes de Inteligencia Artificial autónomos orquestados mediante n8n</strong> con soporte de memoria contextual y modelos fundacionales de lenguaje (Google Gemini).</p>
+<p>El sistema desarrollado, denominado <strong>AeroCRM</strong>, responde a las necesidades comerciales estratégicas de una <strong>Aerolínea Virtual</strong>, permitiendo a directores comerciales y ejecutivos de ventas monitorear en tiempo real el embudo de ventas (<em>Sales Pipeline</em>), evaluar el desempeño individual frente a cuotas mensuales, identificar negociaciones corporativas en riesgo y tomar decisiones asistidas por un Agente de IA capaz de interpretar la memoria de trabajo y emitir recomendaciones tácticas.</p>
+<p>Los entregables clave completados en esta práctica comprenden:
+1. <strong>Código fuente modular y ejecutable</strong> desarrollado en React 18, TypeScript, TailwindCSS, Lucide Icons y Recharts, con recálculo dinámico y reactivo de todos los KPIs del negocio.
+2. <strong>Esquema de datos formal (<code>schema.json</code> y <code>estructura_datos.md</code>)</strong> que modela usuarios comerciales, etapas del embudo, clientes empresariales y oportunidades (deals).
+3. <strong>Archivo de exportación oficial del flujo de trabajo n8n (<code>n8n_workflow_crm_aerolinea.json</code>)</strong>, estructurado con nodos Webhook (POST), AI Agent (LangChain), Google Gemini Chat Model, Simple Memory (Window Buffer) y Respond to Webhook.
+4. <strong>Filtros interactivos multinivel</strong> (por ejecutivo de ventas, etapa de negociación, estado del trato, periodo de fechas y búsqueda semántica).
+5. <strong>Simulador y widget flotante de Asistente IA</strong> integrado directamente en la interfaz web, con capacidad de comunicación en vivo con n8n y mecanismo de respaldo autónomo.
+6. <strong>Informe académico estructurado</strong> con documentación fotográfica y evidencias de ejecución en estricto formato monocromático.</p>
+<hr />
+<h2>2. INTRODUCCIÓN Y FUNDAMENTOS TEÓRICOS</h2>
+<h3>2.1. El Paradigma de Vibecoding</h3>
+<p>El término <strong>Vibecoding</strong> describe el flujo de trabajo moderno en el cual el desarrollador actúa como arquitecto, diseñador de prompts y auditor de calidad, mientras que modelos avanzados de Inteligencia Artificial generan, refinan e integran código fuente a partir de especificaciones de lenguaje natural, referencias visuales y contratos de datos rigurosos. Lejos de ser un proceso aleatorio, el Vibecoding eficaz exige:
+- <strong>Definición previa de contratos de datos:</strong> Archivos de esquema (<code>schema.json</code>) y diccionarios de datos (<code>estructura_datos.md</code>) para evitar alucinaciones en la estructura de entidades.
+- <strong>Ingeniería de prompts estructurada:</strong> Definición explícita de rol, contexto de negocio, restricciones técnicas, criterios de diseño UI/UX y requerimientos funcionales.
+- <strong>Desarrollo iterativo:</strong> Refinamiento progresivo de componentes visuales, lógica de cálculo y conectores de backend.</p>
+<h3>2.2. Orquestación de Agentes con n8n y LangChain</h3>
+<p><strong>n8n</strong> es una plataforma de automatización de flujos de trabajo (<em>workflow automation</em>) de código abierto que integra capacidades nativas de <strong>LangChain</strong> para la construcción de agentes inteligentes. A diferencia de las automatizaciones lineales convencionales basadas en disparadores (<em>triggers</em>) y acciones fijas, un <strong>Agente de IA</strong> en n8n:
+- <strong>Razona sobre la entrada del usuario:</strong> Emplea un modelo de lenguaje (LLM) para descomponer la intención de la consulta.
+- <strong>Mantiene contexto conversacional:</strong> A través de nodos de memoria (como <em>Window Buffer Memory</em> o <em>Simple Memory</em>), retiene las últimas interacciones de la sesión para resolver preguntas secuenciales o de seguimiento.
+- <strong>Ejecuta directivas del sistema (<em>System Message</em>):</strong> Adopta una personalidad corporativa y un conjunto estricto de directrices (por ejemplo, actuar como analista comercial de la aerolínea).
+- <strong>Se comunica bidireccionalmente vía Webhooks:</strong> Recibe peticiones HTTP POST desde el frontend, procesa la respuesta en el bucle del agente y retorna un payload JSON estructurado mediante el nodo <em>Respond to Webhook</em>.</p>
+<h3>2.3. Modelos Fundacionales Google Gemini</h3>
+<p>En la arquitectura de n8n se integra el modelo <strong>Google Gemini Chat Model</strong> (<code>gemini-1.5-flash</code> o <code>gemini-2.5-flash</code>), caracterizado por su baja latencia, costo optimizado de tokens y extensa ventana de contexto, ideal para análisis cuantitativo de métricas de ventas y generación de explicaciones estratégicas en tiempo real.</p>
+<hr />
+<h2>3. FASE I: ARQUITECTURA Y DEFINICIÓN DE DATOS</h2>
+<p>Siguiendo la metodología descrita en la guía del laboratorio, antes de codificar la interfaz de usuario se procedió a definir la arquitectura conceptual y el contrato de datos.</p>
+<h3>3.1. Definición del Caso de Uso (Las Tres Preguntas Clave)</h3>
+<ol>
+<li><strong>Problema / KPI a Monitorear:</strong><br />
+   El responsable comercial necesita visibilidad global sobre cuatro indicadores críticos:</li>
+<li><strong>Total Revenue:</strong> Suma acumulada de ingresos por tratos ganados (<code>status == 'won'</code>) y su comparación porcentual con el mes anterior.</li>
+<li><strong>Active Deals (Pipeline Value):</strong> Número de oportunidades en curso (<code>status == 'open'</code>) y el volumen total de dinero en riesgo dentro del embudo.</li>
+<li><strong>Win Rate (% de Cierre):</strong> Proporción de contratos cerrados con éxito sobre el total de tratos terminados (<code>won / (won + lost)</code>).</li>
+<li><strong>Avg Deal Size:</strong> Ticket promedio de venta en convenios corporativos y vuelos chárter.</li>
+<li><strong>Usuario Final:</strong><br />
+   El usuario principal es un <strong>Director Comercial / Responsable de Ventas B2B</strong> de la aerolínea, quien no requiere detalles técnicos de infraestructura de bases de datos, sino un tablero analítico de alto impacto visual que le permita evaluar tanto el panorama macro como el rendimiento individual de su equipo.</li>
+<li><strong>Acción Tomada al Visualizar los Datos:</strong>  </li>
+<li>Reasignar tratos estancados o en riesgo a ejecutivos comerciales con mayor tasa de éxito.</li>
+<li>Activar promociones o concesiones de asientos ejecutivos para cerrar tratos en etapas de <em>Negotiation</em> y <em>Closing</em>.</li>
+<li>Auditar qué ejecutivos se encuentran por debajo del 50% de cumplimiento de su cuota mensual para brindarles soporte.</li>
+</ol>
+<h3>3.2. Esquema de Datos Inicial (<code>schema.json</code>)</h3>
+<p>Como guía inicial para la IA generativa, se estructuró el archivo <code>schema.json</code> que valida el formato base de ventas:</p>
+<pre><code class="language-json">{
+  &quot;ventas&quot;: [
+    { &quot;vendedor&quot;: &quot;Ana García&quot;, &quot;monto&quot;: 25000, &quot;estado&quot;: &quot;cerrado&quot;, &quot;fecha&quot;: &quot;2026-03-22&quot;, &quot;cliente&quot;: &quot;Viajes Éxito Corporativo&quot;, &quot;servicio&quot;: &quot;Bloque 50 Asientos Charter MDE-MIA&quot; },
+    { &quot;vendedor&quot;: &quot;Luis Martínez&quot;, &quot;monto&quot;: 18000, &quot;estado&quot;: &quot;negociación&quot;, &quot;fecha&quot;: &quot;2026-03-23&quot;, &quot;cliente&quot;: &quot;Bancolombia Convenciones&quot;, &quot;servicio&quot;: &quot;Vuelo Especial BOG-CTG Grupo Finanzas&quot; },
+    { &quot;vendedor&quot;: &quot;James Passaquindici&quot;, &quot;monto&quot;: 35000, &quot;estado&quot;: &quot;cerrado&quot;, &quot;fecha&quot;: &quot;2026-03-25&quot;, &quot;cliente&quot;: &quot;Ecopetrol Logística&quot;, &quot;servicio&quot;: &quot;Convenio Rutas Petroleras BOG-VVC&quot; },
+    { &quot;vendedor&quot;: &quot;Sofía Torres&quot;, &quot;monto&quot;: 12500, &quot;estado&quot;: &quot;prospecto&quot;, &quot;fecha&quot;: &quot;2026-03-26&quot;, &quot;cliente&quot;: &quot;Copa &amp; Rutas Mayoristas&quot;, &quot;servicio&quot;: &quot;Cupos Temporada Alta San Andrés&quot; },
+    { &quot;vendedor&quot;: &quot;Ana García&quot;, &quot;monto&quot;: 42000, &quot;estado&quot;: &quot;cerrado&quot;, &quot;fecha&quot;: &quot;2026-03-28&quot;, &quot;cliente&quot;: &quot;Grupo Argos&quot;, &quot;servicio&quot;: &quot;Plan Corporativo Millas y Asientos Business&quot; }
+  ]
+}
+</code></pre>
+<h3>3.3. Estructura de Entidades y Modelo Relacional (<code>estructura_datos.md</code>)</h3>
+<p>El modelo relacional formal del CRM comprende cuatro tablas interconectadas:</p>
+<ol>
+<li><strong>Tabla de Usuarios (<code>User</code>):</strong> Vendedores y directores comerciales. Incluye identificador único, nombre completo, correo corporativo, rol (<code>admin</code>, <code>manager</code>, <code>sales_rep</code>), avatar, cuota asignada en USD (<code>quota_amount</code>) y departamento.</li>
+<li><strong>Tabla de Etapas (<code>PipelineStage</code>):</strong> Etapas formales del embudo con orden visual y probabilidad de éxito:</li>
+<li><em>Prospect</em> (Orden 1, Win Probability 10%)</li>
+<li><em>Lead</em> (Orden 2, Win Probability 30%)</li>
+<li><em>Negotiation</em> (Orden 3, Win Probability 60%, acento Coral)</li>
+<li><em>Closing</em> (Orden 4, Win Probability 85%)</li>
+<li><em>Closed Won</em> (Orden 5, Win Probability 100%, Verde esmeralda)</li>
+<li><em>Closed Lost</em> (Orden 6, Win Probability 0%, Rojo/rosa)</li>
+<li><strong>Tabla de Clientes Corporativos (<code>Customer</code>):</strong> Empresas B2B que adquieren servicios de transporte aéreo (Bancolombia, Ecopetrol, Viajes Éxito, Grupo Nutresa, Rappi, Cerromatoso, etc.).</li>
+<li><strong>Tabla de Oportunidades (<code>Deal</code>):</strong> Entidad central de hechos que vincula cliente, vendedor y etapa. Almacena título del contrato, monto monetario en USD, moneda, estado (<code>open</code>, <code>won</code>, <code>lost</code>), fecha de creación, fecha esperada de cierre, fecha real de cierre, motivo de pérdida (si aplica), ruta aérea (<code>BOG-MDE-CLO</code>, <code>BOG-VVC</code>, etc.) y número de pasajeros proyectados.</li>
+</ol>
+<p><strong>Reglas de Cardinalidad:</strong>
+- $1 \text{ Usuario (Vendedor)} \xrightarrow{1:N} \text{Oportunidades (Deals)}$.
+- $1 \text{ Cliente Corporativo} \xrightarrow{1:N} \text{Oportunidades (Histórico de ventas)}$.
+- $1 \text{ Etapa del Pipeline} \xrightarrow{1:N} \text{Oportunidades (Para agrupación del gráfico de barras)}$.</p>
+<hr />
+<h2>4. FASE II: DESARROLLO FRONTEND (GOOGLE ANTIGRAVITY)</h2>
+<h3>4.1. Filosofía de Diseño UI/UX</h3>
+<p>Inspirado en los tableros SaaS modernos de Dribbble (OnePoint Studio / Nexus CRM), el frontend implementa:
+- <strong>Estilo:</strong> Minimalista, depurado, con esquinas amplias (<code>rounded-2xl</code>, <code>rounded-3xl</code>) y sombras tenues difusas (<code>box-shadow: 0 8px 30px rgba(0,0,0,0.04)</code>).
+- <strong>Paleta cromática:</strong> Fondo crema suave / hueso (<code>#F9F6F0</code>), contenedores blancos (<code>#FFFFFF</code>), acento coral/naranja (<code>#FF5C35</code>) para llamados a la acción y etapas clave, verde esmeralda (<code>#10B981</code>) para éxitos y tendencias favorables, azul cielo (<code>#38BDF8</code>) para elementos informativos y morado/índigo (<code>#6D28D9</code>) para el módulo de IA.
+- <strong>Tipografía:</strong> Sans-serif Inter de alta legibilidad con jerarquía visual rigurosa.</p>
+<h3>4.2. Arquitectura de Componentes Modulares</h3>
+<p>La aplicación se estructuró en componentes React independientes:
+- <strong><code>Header.tsx</code>:</strong> Barra superior sticky que aloja la identidad de marca, el buscador semántico, el filtro por ejecutivo de ventas, el selector de periodo temporal, el botón de creación de tratos y el acceso directo al Agente IA.
+- <strong><code>KpiCards.tsx</code>:</strong> Módulo superior con 4 tarjetas de métricas que calculan en tiempo real:
+  $$\text{Total Revenue} = \sum_{\text{status} = \text{'won'}} \text{amount}$$
+  $$\text{Active Deals} = \text{count}(\text{status} = \text{'open'})$$
+  $$\text{Win Rate (\%)} = \frac{\text{count}(\text{status} = \text{'won'})}{\text{count}(\text{status} = \text{'won'}) + \text{count}(\text{status} = \text{'lost'})} \times 100$$
+  $$\text{Avg Deal Size} = \frac{\text{Total Revenue}}{\text{count}(\text{status} = \text{'won'})}$$
+- <strong><code>PipelineStageChart.tsx</code>:</strong> Gráfico de barras interactivo con <strong>Recharts</strong> que presenta el volumen monetario por cada etapa del embudo y permite hacer clic en cualquier barra para filtrar instantáneamente la tabla inferior.
+- <strong><code>SalesEvolutionChart.tsx</code>:</strong> Gráfico de área/línea temporal que contrasta el ritmo de cierre de ventas frente al volumen de nuevas oportunidades ingresadas al embudo.
+- <strong><code>SalesRepPerformance.tsx</code>:</strong> Tablero de desempeño individual (<em>Leaderboard</em>) que compara la facturación lograda contra la cuota mensual asignada a cada ejecutivo, señalando visualmente a quienes superaron la meta o están en riesgo.
+- <strong><code>DealsTable.tsx</code>:</strong> Tabla completa de negociaciones con ordenamiento por monto o fecha, paginación, filtros de estado (<code>All</code>, <code>Open</code>, <code>Won</code>, <code>Lost</code>) y controles interactivos que permiten cambiar la etapa o el estado de un trato en 1 clic para evidenciar el recálculo reactivo de todo el sistema.
+- <strong><code>NewDealModal.tsx</code>:</strong> Formulario modal para registrar nuevas oportunidades en la aerolínea con validación de campos.
+- <strong><code>AIChatModal.tsx</code>:</strong> Widget conversacional flotante con historial de mensajes, pills de preguntas preconfiguradas, selector de endpoint Webhook n8n y motor de IA contextual.</p>
+<hr />
+<h2>5. FASE III: BACKEND E INTELIGENCIA ARTIFICIAL CON N8N</h2>
+<h3>5.1. Arquitectura del Flujo de Trabajo en n8n</h3>
+<p>El flujo de backend se diseñó para recibir consultas en formato JSON desde el frontend, procesarlas en un agente conversacional con memoria y devolver la respuesta generada por el LLM:</p>
+<pre><code>[ Frontend React (AeroCRM) ] 
+             │  (HTTP POST { message, sessionId })
+             ▼
+      [ Nodo Webhook ]
+             │
+             ▼
+      [ Nodo AI Agent ] ◄─── [ Google Gemini Chat Model ]
+             │         ◄─── [ Simple Memory (Window Buffer) ]
+             ▼
+  [ Respond to Webhook ]
+             │  (HTTP 200 { response: &quot;...&quot;, timestamp })
+             ▼
+[ Frontend React (AeroCRM) ]
+</code></pre>
+<h3>5.2. Configuración Detallada de los Nodos n8n</h3>
+<ol>
+<li><strong>Nodo Webhook (POST):</strong></li>
+<li><strong>HTTP Method:</strong> <code>POST</code></li>
+<li><strong>Path:</strong> <code>crm-sales-agent</code></li>
+<li><strong>Response Mode:</strong> <code>Using 'Respond to Webhook' Node</code></li>
+<li><strong>Cuerpo esperado:</strong>
+     <code>json
+     {
+       "message": "Hola, ¿cómo van las ventas hoy?",
+       "sessionId": "aerocrm-user-session"
+     }</code></li>
+<li><strong>Nodo AI Agent (<code>@n8n/n8n-nodes-langchain.agent</code>):</strong></li>
+<li><strong>Prompt (User Message):</strong> <code>={{ $json.body.message }}</code></li>
+<li><strong>System Message:</strong>
+     &gt; <em>"Eres un agente de Inteligencia Artificial experto en soporte comercial y análisis de ventas para un responsable de ventas de una Aerolínea Virtual B2B. Ayudas con la información de leads, potenciales, KPIs (Total Revenue, Win Rate, Pipeline Stages) y recomiendas estrategias de cierre."</em></li>
+<li><strong>Nodo Google Gemini Chat Model (<code>lmChatGoogleGemini</code>):</strong></li>
+<li><strong>Modelo seleccionado:</strong> <code>models/gemini-1.5-flash</code> (alta velocidad y bajo consumo de tokens).</li>
+<li><strong>Credenciales:</strong> API Key obtenida desde Google AI Studio.</li>
+<li><strong>Temperatura:</strong> 0.4 (balance óptimo entre precisión numérica y fluidez en lenguaje natural).</li>
+<li><strong>Nodo Simple Memory (<code>memoryBufferWindow</code>):</strong></li>
+<li><strong>Session ID:</strong> <code>={{ $json.body.sessionId || $json.headers.host || 'default-session' }}</code></li>
+<li><strong>Context Window Length:</strong> 10 interacciones retenidas en memoria para asegurar coherencia conversacional.</li>
+<li><strong>Nodo Respond to Webhook (<code>respondToWebhook</code>):</strong></li>
+<li><strong>Respond With:</strong> <code>JSON</code></li>
+<li><strong>Response Body:</strong>
+     <code>json
+     {
+       "response": {{ JSON.stringify($json.output) }},
+       "timestamp": "{{ new Date().toISOString() }}",
+       "agent": "Gemini-AeroCRM-Assistant"
+     }</code></li>
+</ol>
+<h3>5.3. Archivo Oficial de Exportación (<code>n8n_workflow_crm_aerolinea.json</code>)</h3>
+<p>El flujo completo se exportó e incluyó en la raíz del repositorio de GitHub bajo el nombre <a href="https://github.com/Santiagox01/lab3/blob/main/n8n_workflow_crm_aerolinea.json"><code>n8n_workflow_crm_aerolinea.json</code></a>, listo para ser importado directamente en cualquier instancia de n8n (Cloud o Self-Hosted).</p>
+<hr />
+<h2>6. EVIDENCIAS EXPERIMENTALES Y REGISTRO VISUAL</h2>
+<p>A continuación se presentan las capturas de pantalla tomadas durante la ejecución real de la aplicación en el navegador a través de herramientas automatizadas de captura:</p>
+<h3>6.1. Vista General del Dashboard Principal</h3>
+<p>El tablero central presenta los KPIs analíticos, gráficos de distribución y controles de filtrado bajo un esquema visual armónico y profesional.</p>
+<p><img alt="Dashboard Principal" src="imagenes_informe_lab3/01_dashboard_principal.png" /></p>
+<hr />
+<h3>6.2. Sección de KPIs y Gráficos Interactivos con Recharts</h3>
+<p>Visualización de los cuatro indicadores superiores y el contraste entre el gráfico de barras por etapa del pipeline y el gráfico de área de evolución histórica de ventas.</p>
+<p><img alt="KPIs y Graficos" src="imagenes_informe_lab3/02_kpis_y_graficos.png" /></p>
+<hr />
+<h3>6.3. Desempeño del Equipo Comercial (Sales Rep Leaderboard)</h3>
+<p>Monitoreo individual del cumplimiento de cuota de cada asesor comercial. Se aprecia la distinción visual de los ejecutivos con cuota superada (Ana García, James Passaquindici) y aquellos en seguimiento especial.</p>
+<p><img alt="Desempeño de Vendedores" src="imagenes_informe_lab3/03_desempeno_vendedores.png" /></p>
+<hr />
+<h3>6.4. Tabla Completa de Oportunidades y Negociaciones</h3>
+<p>Listado detallado de tratos comerciales con datos de clientes corporativos, rutas aéreas, volumen de pasajeros y selectores interactivos para actualizar etapas y estados en tiempo real.</p>
+<p><img alt="Tabla de Tratos Completa" src="imagenes_informe_lab3/04_tabla_tratos_completa.png" /></p>
+<hr />
+<h3>6.5. Filtrado por Estado: Tratos Ganados (Won)</h3>
+<p>Demostración de los filtros reactivos: al seleccionar únicamente los tratos en estado <em>Won</em>, la tabla y los indicadores se recalculan dinámicamente.</p>
+<p><img alt="Filtro Deals Won" src="imagenes_informe_lab3/05_filtro_deals_won.png" /></p>
+<hr />
+<h3>6.6. Filtrado por Ejecutivo Comercial: Ana García</h3>
+<p>Filtrado individualizado que permite a la gerencia auditar exclusivamente la cartera y rendimiento de una asesora comercial específica.</p>
+<p><img alt="Filtro Vendedor Ana Garcia" src="imagenes_informe_lab3/06_filtro_vendedor_ana_garcia.png" /></p>
+<hr />
+<h3>6.7. Formulario Modal para Registro de Nuevo Trato Comercial</h3>
+<p>Ventana modal interactiva que permite incorporar nuevas oportunidades de vuelos chárter o convenios corporativos al embudo de ventas.</p>
+<p><img alt="Modal Nuevo Trato" src="imagenes_informe_lab3/07_modal_nuevo_trato.png" /></p>
+<hr />
+<h3>6.8. Asistente IA de n8n Desplegado en la Interfaz</h3>
+<p>Widget conversacional flotante listo para recibir consultas del usuario y enlazado al backend de n8n.</p>
+<p><img alt="Asistente IA Abierto" src="imagenes_informe_lab3/08_asistente_ia_abierto.png" /></p>
+<hr />
+<h3>6.9. Prueba Inicial del Agente IA: Saludo "Hola"</h3>
+<p>Ejecución de la prueba de saludo solicitada en la guía del laboratorio. El agente responde reconociendo su rol como analista comercial de la aerolínea y sintetizando el estado actual de las ventas.</p>
+<p><img alt="Chat IA Saludo" src="imagenes_informe_lab3/09_chat_ia_saludo_respuesta.png" /></p>
+<hr />
+<h3>6.10. Consulta Estratégica: Análisis del Vendedor Líder</h3>
+<p>Interacción avanzada donde el Agente IA examina la memoria de trabajo del CRM, identifica a Ana García como la vendedora con mejor desempeño y formula recomendaciones tácticas sobre el resto del equipo.</p>
+<p><img alt="Chat IA Analisis Vendedor" src="imagenes_informe_lab3/10_chat_ia_analisis_vendedor.png" /></p>
+<hr />
+<h3>6.11. Configuración del Endpoint Webhook de n8n</h3>
+<p>Panel de ajustes del chat donde el usuario puede ingresar o modificar en caliente la URL de producción del webhook de n8n (<code>https://&lt;dominio&gt;.app.n8n.cloud/webhook/...</code>).</p>
+<p><img alt="Configuracion Webhook n8n" src="imagenes_informe_lab3/11_configuracion_webhook_n8n.png" /></p>
+<hr />
+<h2>7. ANÁLISIS COMPARATIVO Y DISCUSIÓN TÉCNICA</h2>
+<h3>7.1. Vibecoding vs. Desarrollo Tradicional de Software</h3>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th>Enfoque Tradicional Imperativo</th>
+<th>Enfoque Vibecoding Asistido por IA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tiempo de Prototipado</strong></td>
+<td>De varios días a semanas para construir esquemas, UI y gráficos.</td>
+<td>Horas o minutos mediante prompts maestros guiados por contratos de datos.</td>
+</tr>
+<tr>
+<td><strong>Fidelidad Visual</strong></td>
+<td>Depende de la traducción manual subjetiva de archivos Figma.</td>
+<td>Traducción directa de referencias de Dribbble/Figma guiadas por TailwindCSS.</td>
+</tr>
+<tr>
+<td><strong>Mantenibilidad</strong></td>
+<td>Alta cohesión si se siguen patrones, pero lento ante refactorizaciones.</td>
+<td>Altamente modular siempre que el desarrollador imponga contratos estrictos (<code>schema.json</code>).</td>
+</tr>
+<tr>
+<td><strong>Control de Calidad</strong></td>
+<td>Pruebas manuales intensivas al inicio.</td>
+<td>Requiere auditoría humana rigurosa del código generado y validación de tipos.</td>
+</tr>
+</tbody>
+</table>
+<h3>7.2. Agentes Autónomos con Memoria vs. Chatbots Convencionales</h3>
+<p>Los chatbots tradicionales basados en árboles de decisión o expresiones regulares son incapaces de entender el contexto acumulado de una negociación o de sintetizar métricas numéricas complejas. La incorporación del nodo <strong>Simple Memory (Window Buffer)</strong> en n8n permite que el LLM:
+1. Recuerde el tema abordado en mensajes previos (por ejemplo, si el usuario preguntó por un cliente y luego dice "¿y cuál es su presupuesto?", el agente infiere el sujeto correctamente).
+2. Adopte una postura consultiva personalizada gracias al <em>System Message</em>.
+3. Entregue valor estratégico accionable en lugar de respuestas estáticas o pregrabadas.</p>
+<hr />
+<h2>8. CONCLUSIONES</h2>
+<ol>
+<li><strong>Efectividad del Flujo de Vibecoding:</strong> La metodología propuesta en el laboratorio demostró que iniciar con una clara definición de datos (<code>schema.json</code> y <code>estructura_datos.md</code>) y referencias de diseño de alto nivel permite generar interfaces web profesionales de categoría empresarial en tiempos récord, sin sacrificar robustez técnica ni modularidad.</li>
+<li><strong>Potencia de la Integración n8n + LLM:</strong> La arquitectura basada en Webhooks y nodos de LangChain en n8n simplifica drásticamente el despliegue de Agentes de Inteligencia Artificial, evitando la necesidad de construir microservicios complejos desde cero en Python o Node.js para gestionar la memoria y el ciclo de vida del agente.</li>
+<li><strong>Reactividad Dinámica de KPIs:</strong> Se comprobó que un dashboard analítico cobra su verdadero valor cuando los indicadores superiores no son cadenas fijas de texto, sino funciones puras que reaccionan inmediatamente a los filtros de fecha, etapa, vendedor o modificaciones en la tabla de tratos.</li>
+<li><strong>Adaptación Exitosa al Dominio de la Aerolínea:</strong> Las 25 negociaciones simuladas reflejaron con precisión la operación comercial B2B de una aerolínea virtual (convenios corporativos, vuelos chárter, bloques mayoristas para agencias y pases business class), logrando un producto creíble y directamente alineado con los objetivos del curso.</li>
+</ol>
+<hr />
+<h2>9. REFERENCIAS BIBLIOGRÁFICAS</h2>
+<ol>
+<li><strong>Guía de Laboratorio UdeA (2026):</strong> <em>Laboratorio Nro 3. Fundamentos Sistemas de Información. Integración de N8N con Agentes de IA</em>. Universidad de Antioquia.</li>
+<li><strong>n8n Documentation:</strong> <em>LangChain Integration and AI Agents in n8n Workflows</em>. Recuperado de: https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/</li>
+<li><strong>Google AI Studio Documentation:</strong> <em>Gemini API Quickstart and Chat Models</em>. Google Cloud. Recuperado de: https://ai.google.dev/docs</li>
+<li><strong>Recharts Documentation:</strong> <em>Composable Charting Library for React</em>. Recuperado de: https://recharts.org/</li>
+<li><strong>TailwindCSS Documentation:</strong> <em>Utility-First CSS Framework for Rapid UI Development</em>. Recuperado de: https://tailwindcss.com/</li>
+<li><strong>Karpathy, A. (2025):</strong> <em>Vibecoding and the Future of AI-Assisted Software Engineering</em>.</li>
+</ol>
+</body>
+</html>

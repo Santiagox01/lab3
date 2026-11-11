@@ -1,0 +1,157 @@
+{
+  "name": "CRM Sales AI Agent - Aerolinea Virtual",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "crm-sales-agent",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e9b25102-1406-44ce-8db2-d6ba872fb361",
+      "name": "Webhook",
+      "webhookId": "crm-sales-agent-aerolinea"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message }}",
+        "options": {
+          "systemMessage": "Eres un agente de Inteligencia Artificial experto en soporte comercial y análisis de ventas para un responsable de ventas (Sales Lead / Commercial Director) de una Aerolínea Virtual B2B.\n\nTus capacidades principales:\n1. Analizar el rendimiento de ventas (Total Revenue, Active Deals, Win Rate %, Ticket Promedio / Avg Deal Size).\n2. Interpretar el embudo comercial (Pipeline Stages: Prospect, Lead, Negotiation, Closing, Closed Won, Closed Lost).\n3. Evaluar el desempeño individual de los ejecutivos de ventas (Ana García, James Passaquindici, Luis Martínez, Sofía Torres) comparando su cuota asignada contra sus ventas reales.\n4. Diagnosticar cuellos de botella en negociaciones corporativas de rutas aéreas, convenios de agencias, charters y bloques de asientos business.\n5. Sugerir acciones estratégicas y tácticas (reasignación de cuentas en riesgo, seguimiento de clientes enterprise, ofertas para cerrar antes de fin de mes).\n\nResponde siempre de manera concisa, estructurada, profesional y con viñetas claras cuando sea oportuno."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        260,
+        0
+      ],
+      "id": "8b51d02c-55c3-4d4e-b5c6-6cf404ba1923",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {
+          "temperature": 0.4
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        200,
+        220
+      ],
+      "id": "748892bf-d6ca-468e-94ad-7313cead6f72",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "gemini-api-cred",
+          "name": "Google Gemini (PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionId": "={{ $json.body.sessionId || $json.headers.host || 'default-session' }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        360,
+        220
+      ],
+      "id": "ff7ca091-628b-4a52-b134-8c88746c19f5",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"response\": {{ JSON.stringify($json.output) }},\n  \"timestamp\": \"{{ new Date().toISOString() }}\",\n  \"agent\": \"Gemini-AeroCRM-Assistant\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        0
+      ],
+      "id": "3dc5080e-3164-4e20-9cb9-4a0bfa201bce",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "81e0f2fe-d816-43a9-a9a3-a722e03889aa",
+  "id": "aero-crm-sales-agent",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "diego-botia-n8n-instance"
+  },
+  "tags": [
+    {
+      "name": "AeroCRM",
+      "id": "aerocrm-tag"
+    },
+    {
+      "name": "Gemini",
+      "id": "gemini-tag"
+    }
+  ]
+}
