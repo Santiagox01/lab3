@@ -9,9 +9,7 @@ Este repositorio contiene la solución completa e integral correspondiente al **
 
 | Archivo / Carpeta | Descripción |
 | :--- | :--- |
-| `INFORME_LABORATORIO_3.pdf` | **Informe formal y detallado del laboratorio** en formato PDF de alta resolución (estilo monocrómico académico estricto). |
-| `INFORME_LABORATORIO_3.html` | Versión HTML navegable del informe académico. |
-| `INFORME_LABORATORIO_3.md` | Código fuente Markdown del informe formal. |
+
 | `n8n_workflow_crm_aerolinea.json` | **Exportación oficial del flujo de trabajo de n8n** (Webhook + LangChain AI Agent + Google Gemini Chat Model + Window Buffer Memory + Respond to Webhook). |
 | `schema.json` | Esquema formal JSON Schema del modelo relacional del CRM (`Deal`, `Customer`, `User`, `PipelineStage`). |
 | `estructura_datos.md` | Documentación técnica exhaustiva del modelo de entidades, tipos de datos y relaciones de negocio. |
